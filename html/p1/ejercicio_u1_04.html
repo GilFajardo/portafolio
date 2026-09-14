@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Mayúsculas</title>
+</head>
+<body>
+
+    <label for="texto">Ingresa una cadena:</label><br>
+    <input type="text" id="texto">
+    <button onclick="procesar()">Procesar</button>
+
+    <h3>Resultado:</h3>
+    <p id="resultado"></p>
+
+    <script>
+        function procesar() {
+            // 1. Obtener la cadena ingresada
+            let cadena = document.getElementById("texto").value;
+
+            // 2. Separar por palabras (split)
+            let palabras = cadena.split(" ");
+
+            // 3. Modificar primera y última letra de cada palabra
+            let resultado = palabras.map(palabra => {
+                if (palabra.length === 1) {
+                    return palabra.toUpperCase();
+                }
+                
+                let primera = palabra[0].toUpperCase();
+                let centro = palabra.slice(1, -1);
+                let ultima = palabra[palabra.length - 1].toUpperCase();
+
+                return primera + centro + ultima;
+            });
+
+            // 4. Mostrar el arreglo resultante en pantalla y en la consola
+            document.getElementById("resultado").innerText = JSON.stringify(resultado);
+            console.log(resultado);
+        }
+    </script>
+
+</body>
+</html>
