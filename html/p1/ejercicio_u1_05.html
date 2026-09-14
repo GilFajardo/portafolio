@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Interactiva</title>
+</head>
+<body>
+
+    <h1>Tabla 3x3</h1>
+
+    <table border="1">
+        <tr>
+            <td class="symbol-cell">★</td>
+            <td class="symbol-cell">♦</td>
+            <td class="symbol-cell">♣</td>
+        </tr>
+        <tr>
+            <td class="symbol-cell">♠</td>
+            <td class="symbol-cell">♫</td>
+            <td class="symbol-cell">☀</td>
+        </tr>
+        <tr>
+            <td class="symbol-cell">⚡</td>
+            <td class="symbol-cell">❄</td>
+            <td class="symbol-cell">☯</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <button onclick="shuffleSymbols()">Random</button>
+
+    <script>
+        function shuffleSymbols() {
+            const cells = Array.from(document.querySelectorAll('.symbol-cell'));
+            
+            // Extract symbols from each cell
+            const symbols = cells.map(cell => cell.textContent);
+
+            // Durstenfeld (Fisher-Yates) shuffle algorithm
+            for (let i = symbols.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [symbols[i], symbols[j]] = [symbols[j], symbols[i]];
+            }
+
+            // Assign shuffled symbols back to cells
+            cells.forEach((cell, index) => {
+                cell.textContent = symbols[index];
+            });
+        }
+    </script>
+
+</body>
+</html>
